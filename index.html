@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GB 特定技能申請業務マニュアル</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f6fa;--bg2:#fff;--bg3:#f0f1f7;--border:#dde0ef;--accent:#2563eb;--accent3:#059669;--warn:#d97706;--danger:#dc2626;--text:#1e2035;--text2:#4b5280;--text3:#8b90b0;--gbblue:#1a3a6b;--sw:260px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:14px}
+.sidebar{position:fixed;top:0;left:0;width:var(--sw);height:100vh;background:var(--gbblue);overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+.sidebar-header{padding:22px 18px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.logo{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:700;color:#f0d080;line-height:1.5}
+.logo-sub{display:block;font-size:11px;color:rgba(255,255,255,.45);font-family:'Noto Sans JP',sans-serif;font-weight:400;margin-top:5px}
+.nav{flex:1;padding:10px 0}
+.nav-sec{padding:10px 16px 3px;font-size:10px;font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.3);text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 16px;color:rgba(255,255,255,.65);text-decoration:none;font-size:13px;cursor:pointer;transition:all .15s;border-left:3px solid transparent}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-item.active{color:#fff;background:rgba(255,255,255,.12);border-left-color:#f0d080;font-weight:500}
+.nav-item .ic{font-size:13px;width:16px;text-align:center;flex-shrink:0}
+.sidebar-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,.1);font-size:11px;color:rgba(255,255,255,.3);line-height:1.6}
+.main{margin-left:var(--sw);min-height:100vh}
+.topbar{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 36px;height:48px;display:flex;align-items:center;justify-content:space-between;z-index:50}
+.bc{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text3)}
+.bc .cur{color:var(--text2);font-weight:500}
+.bver{background:var(--bg3);border:1px solid var(--border);padding:3px 9px;border-radius:20px;font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.content{padding:32px 36px;max-width:940px}
+.page{display:none}.page.active{display:block}
+.sh{margin-bottom:26px}
+.sl{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:5px}
+.st{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:700;color:var(--text);line-height:1.3}
+.sd{margin-top:7px;color:var(--text2);font-size:13px;max-width:580px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.ct{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.ct .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.tw{overflow-x:auto;border-radius:7px;border:1px solid var(--border);margin-bottom:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead{background:var(--bg3)}
+th{padding:9px 13px;text-align:left;font-weight:600;color:var(--text2);font-size:12px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:9px 13px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbff}
+.b{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+.b-bl{background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+.b-gr{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.b-or{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.b-pu{background:#ede9fe;color:#5b21b6;border:1px solid #ddd6fe}
+.b-re{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+.b-gy{background:#f3f4f6;color:#4b5563;border:1px solid #e5e7eb}
+.flow{display:flex;flex-direction:column}
+.fi{display:flex;gap:16px}
+.fl{display:flex;flex-direction:column;align-items:center;width:34px;flex-shrink:0}
+.fn{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;font-family:'JetBrains Mono',monospace}
+.fn.gb{background:#dbeafe;color:#1d4ed8;border:2px solid #93c5fd}
+.fn.as{background:#d1fae5;color:#065f46;border:2px solid #6ee7b7}
+.fline{flex:1;width:2px;background:var(--border);margin:0 auto;min-height:18px}
+.fb{flex:1;padding-bottom:20px}
+.fr{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.fr.gb{color:var(--accent)}.fr.as{color:var(--accent3)}
+.ftask{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.fnote{font-size:12px;color:var(--text2);line-height:1.6}
+.fsub{margin-top:6px;display:flex;flex-wrap:wrap;gap:5px}
+.alert{display:flex;gap:10px;padding:12px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;line-height:1.65}
+.ai{font-size:14px;flex-shrink:0;margin-top:1px}
+.aw{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.ainfo{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.atip{background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46}
+.stepblock{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:14px}
+.sbtitle{font-size:13px;font-weight:700;color:var(--text);padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.sitem{display:flex;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border);align-items:flex-start;background:#fff}
+.sitem:last-child{border-bottom:none}
+.sitem:nth-child(even){background:#fafbff}
+.snum{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;border-radius:4px;padding:2px 7px;flex-shrink:0;margin-top:1px}
+.snum.bl{background:#dbeafe;color:#1d4ed8}
+.snum.gr{background:#d1fae5;color:#065f46}
+.smain{font-size:13px;color:var(--text);font-weight:600}
+.ssub{font-size:12px;color:var(--text2);margin-top:2px;line-height:1.55}
+.tree{font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:14px 18px;color:var(--text2);overflow-x:auto}
+.tree .fo{color:#b45309;font-weight:700}
+.tree .fi2{color:#1d4ed8}
+.tree .cm{color:var(--text3)}
+.tree .op{color:var(--warn)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.tc{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.th2{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:var(--bg3)}
+.tn{font-size:15px;font-weight:700}
+.tn.r{color:var(--accent)}.tn.d{color:var(--accent3)}
+.tb{padding:13px 16px}
+.ti{display:flex;gap:8px;margin-bottom:7px;font-size:13px;color:var(--text2)}
+.ti .ck{color:var(--accent3);flex-shrink:0;font-weight:700}
+.ti .cx{color:var(--danger);flex-shrink:0;font-weight:700}
+.hero{background:linear-gradient(135deg,#1a3a6b 0%,#1e4585 100%);border-radius:12px;padding:26px 30px;margin-bottom:26px;color:#fff}
+.hero-t{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:700;margin-bottom:5px}
+.hero-s{color:rgba(255,255,255,.72);font-size:13px;max-width:460px;margin-bottom:18px}
+.hs{display:flex;gap:26px;flex-wrap:wrap}
+.hs .n{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;color:#f0d080}
+.hs .l{font-size:11px;color:rgba(255,255,255,.5);margin-top:1px}
+.list{padding-left:0;list-style:none}
+.list li{padding:6px 0 6px 16px;position:relative;font-size:13px;color:var(--text2);border-bottom:1px solid var(--bg3)}
+.list li:last-child{border-bottom:none}
+.list li::before{content:'—';position:absolute;left:0;color:var(--text3)}
+.list li strong{color:var(--text)}
+.mok{color:#065f46;font-weight:600}.mno{color:#9ca3af}.mra{color:#92400e;font-size:12px}
+code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--bg3);border:1px solid var(--border);padding:1px 6px;border-radius:4px;color:#1d4ed8}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#c8ccdd;border-radius:3px}
+@media(max-width:700px){.g2{grid-template-columns:1fr}.sidebar{display:none}.main{margin-left:0}.content{padding:16px}}
+.dtab{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s}
+.dtab:hover{border-color:var(--accent);color:var(--accent)}
+.dtab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.dtoggle{background:var(--bg3);border:1px solid var(--accent3);border-radius:8px;padding:8px 18px;font-size:13px;font-weight:600;color:var(--accent3);cursor:pointer;transition:all .15s;width:100%;text-align:center}
+.dtoggle:hover{background:#ecfdf5}
+.dtoggle.open{background:var(--accent3);color:#fff}
+.ftree{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:14px;background:var(--bg2)}
+.ftree-root{display:flex;align-items:center;gap:8px;padding:11px 16px;background:#dbeafe;border-bottom:1px solid #bfdbfe;font-weight:700;font-size:13px;color:#1e3a8a;flex-wrap:wrap}
+.ftree-root-ex{font-size:11px;color:#3b82f6;font-weight:400;margin-left:4px;font-family:'JetBrains Mono',monospace}
+.ftree-sub{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 28px;background:#f0f4ff;border-bottom:1px solid var(--border);font-weight:700;font-size:13px;color:var(--gbblue)}
+.ftree-sub-note{font-size:11px;font-weight:400;color:var(--text3);margin-left:6px}
+.ftree-sub-badge{margin-left:auto;font-size:11px;padding:2px 8px;border-radius:4px;white-space:nowrap;font-weight:600}
+.ftree-file{display:flex;align-items:baseline;gap:8px;padding:6px 16px 6px 44px;border-bottom:1px solid #f5f6fa;font-size:13px}
+.ftree-file:last-child{border-bottom:none}
+.ftree-fn{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#1d4ed8;flex-shrink:0;word-break:break-all}
+.ftree-fn.op{color:var(--warn)}
+.ftree-fc{font-size:12px;color:var(--text3);white-space:nowrap}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">行政書士法人<br>グローバルBASE<span class="logo-sub">特定技能申請業務マニュアル v0.4</span></div>
+  </div>
+  <div class="nav">
+    <div class="nav-sec">はじめに</div>
+    <a class="nav-item active" onclick="showPage('overview')"><span class="ic">🏠</span>概要・制度説明</a>
+    <div class="nav-sec">業務フロー</div>
+    <a class="nav-item" onclick="showPage('flow')"><span class="ic">🔄</span>全体フロー</a>
+    <a class="nav-item" onclick="showPage('roles')"><span class="ic">👤</span>役割分担</a>
+    <div class="nav-sec">申請区分・資格</div>
+    <a class="nav-item" onclick="showPage('categories')"><span class="ic">📋</span>申請区分マトリクス</a>
+    <a class="nav-item" onclick="showPage('tokkatsu')"><span class="ic">⚡</span>特定活動（移行準備）</a>
+    <div class="nav-sec">取引先・ツール</div>
+    <a class="nav-item" onclick="showPage('clients')"><span class="ic">🏢</span>登録支援機関一覧</a>
+    <a class="nav-item" onclick="showPage('tools')"><span class="ic">🛠</span>ツール使い分け</a>
+    <div class="nav-sec">操作手順</div>
+    <a class="nav-item" onclick="showPage('rakuvisa')"><span class="ic">🔵</span>RAKUVISA操作手順</a>
+    <a class="nav-item" onclick="showPage('dekisugi')"><span class="ic">🟢</span>dekisugi操作手順</a>
+    <div class="nav-sec">ファイル管理</div>
+    <a class="nav-item" onclick="showPage('folders')"><span class="ic">📁</span>フォルダ・命名規則</a>
+    <a class="nav-item" onclick="showPage('docs')"><span class="ic">📄</span>書類一覧・様式番号</a>
+    <div class="nav-sec">品質管理</div>
+    <a class="nav-item" onclick="showPage('review')"><span class="ic">✅</span>最終確認のポイント</a>
+    <div class="nav-sec">制度知識</div>
+    <a class="nav-item" onclick="showPage('seido')"><span class="ic">📚</span>特定技能制度まとめ</a>
+  </div>
+  <div class="sidebar-footer">※ このマニュアルは作成途中です<br>最終更新: 2026年3月（v0.4）</div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <div class="bc"><span>マニュアル</span><span>›</span><span class="cur" id="bc">概要・制度説明</span></div>
+    <div class="bver">v0.4 draft</div>
+  </div>
+  <div class="content">
+
+    <!-- OVERVIEW -->
+    <div class="page active" id="page-overview">
+      <div class="sh"><div class="sl">はじめに</div><div class="st">概要・制度説明</div><div class="sd">本マニュアルはGBの特定技能申請業務に関わる全スタッフ（行政書士・補助者）向けの業務手順書です。</div></div>
+      <div class="hero">
+        <div class="hero-t">特定技能申請業務とは</div>
+        <div class="hero-s">登録支援機関からオーダーを受注し、書類作成・申請・在留カード納品までを担う業務です。</div>
+        <div class="hs">
+          <div><div class="n">3</div><div class="l">申請区分</div></div>
+          <div><div class="n">3</div><div class="l">対象在留資格</div></div>
+          <div><div class="n">2</div><div class="l">主要取引先</div></div>
+          <div><div class="n">2</div><div class="l">書類作成ツール</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>業務の大枠（受注〜納品）</div>
+        <div class="flow">
+          <div class="fi"><div class="fl"><div class="fn gb">1</div><div class="fline"></div></div><div class="fb"><div class="fr gb">登録支援機関 → GB</div><div class="ftask">オーダー受注</div><div class="fnote">kintoneの案件ページ経由で依頼が届く</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">2</div><div class="fline"></div></div><div class="fb"><div class="fr gb">行政書士 / リーダー補助者</div><div class="ftask">作成担当者アサイン</div><div class="fnote">Google Chatで担当補助者を指定</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn as">3</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者（作成担当）</div><div class="ftask">データ整理・書類作成</div><div class="fnote">登録支援機関から共有されたデータを整理 → ツール（RAKUVISA / dekisugi）で申請書類を作成</div><div class="fsub"><span class="b b-bl">RAKUVISAにアップ</span><span class="b b-gr">またはGoogleドライブ保存</span></div></div></div>
+          <div class="fi"><div class="fl"><div class="fn as">4</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者（作成担当）</div><div class="ftask">書類一式の自己確認</div><div class="fnote">作成完了した申請書類一式をチェック</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">5</div><div class="fline"></div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">最終確認</div><div class="fnote">申請書類の最終チェック。問題があれば補助者に差し戻し</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">6</div><div class="fline"></div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">申請</div><div class="fsub"><span class="b b-bl">オンライン申請</span><span class="b b-gy">または窓口申請</span></div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">7</div><div class="fline"></div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">入管対応（必要に応じて）</div><div class="fnote">審査中の入管からの照会等に対応</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">8</div><div class="fline"></div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">在留カード交付対応</div><div class="fsub"><span class="b b-bl">郵送交付</span><span class="b b-gy">または窓口受取</span></div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">9</div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">登録支援機関へ在留カード納品</div><div class="fsub"><span class="b b-bl">kintoneにデータアップ</span><span class="b b-gy">+ 郵送または手渡し</span></div></div></div>
+        </div>
+      </div>
+      <div class="alert ainfo"><span class="ai">ℹ️</span><div>地球人社の場合は<strong>書類作成のみ</strong>がGB担当で、申請・交付は地球人社が行います。ただし農業派遣案件のみGBが申請まで対応します。</div></div>
+    </div>
+
+    <!-- FLOW -->
+    <div class="page" id="page-flow">
+      <div class="sh"><div class="sl">業務フロー</div><div class="st">全体フロー</div></div>
+      <div class="alert atip"><span class="ai">💡</span><div>申請区分（新規 / 更新）・在留資格・取引先によってフローの一部が変わります。詳細は各セクションを参照してください。</div></div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>ツール別の補助者作業フロー</div>
+        <div class="stepblock" style="margin-bottom:16px">
+          <div class="sbtitle"><span class="b b-bl">RAKUVISA</span> GHT社 農業派遣以外（飲食料品製造・鉄道・自動車運送業・外食業 等）</div>
+          <div class="sitem"><span class="snum bl">STEP 1</span><div><div class="smain">データ受領</div><div class="ssub">登録支援機関からkintoneにパスポート・在留カード・各種証明書データが共有される</div></div></div>
+          <div class="sitem"><span class="snum bl">STEP 2</span><div><div class="smain">RAKUVISAにPDFをアップロード</div><div class="ssub">パスポート・在留カード・納税証明書等のPDFをRAKUVISA内の該当案件にアップ</div></div></div>
+          <div class="sitem"><span class="snum bl">STEP 3</span><div><div class="smain">RAKUVISA上で書類作成</div><div class="ssub">申請書・支援計画等をRAKUVISA上で入力・作成。RAKUVISA内でほぼ完結する</div></div></div>
+          <div class="sitem"><span class="snum bl">STEP 4</span><div><div class="smain">書類一式を確認 → 行政書士に提出</div></div></div>
+        </div>
+        <div class="stepblock">
+          <div class="sbtitle"><span class="b b-gr">dekisugi</span> GHT社 農業派遣 / 地球人社（農業派遣・その他）</div>
+          <div class="sitem"><span class="snum gr">STEP 1</span><div><div class="smain">データ受領</div><div class="ssub">登録支援機関からkintoneにデータが共有される</div></div></div>
+          <div class="sitem"><span class="snum gr">STEP 2</span><div><div class="smain">Googleドライブの「作業データ/」フォルダにPDFを保存</div><div class="ssub">0-xx（基本書類）、1-xx（申請人関係）、2-xx（所属機関関係）、3(n社目)-xx（派遣先）の形式で整理</div></div></div>
+          <div class="sitem"><span class="snum gr">STEP 3</span><div><div class="smain">dekisugiで書類を作成・入力</div><div class="ssub">申請書類の各項目を入力</div></div></div>
+          <div class="sitem"><span class="snum gr">STEP 4</span><div><div class="smain">dekisugiからPDF出力 → Googleドライブに保存</div><div class="ssub">「kitnone保存用/」（申請書ページ含む）と「オンライン申請用/」（申請書ページ除く）に分けて保存</div></div></div>
+          <div class="sitem"><span class="snum gr">STEP 5</span><div><div class="smain">書類一式を確認 → 行政書士に提出</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROLES -->
+    <div class="page" id="page-roles">
+      <div class="sh"><div class="sl">業務フロー</div><div class="st">役割分担</div></div>
+      <div class="g2">
+        <div class="card" style="border-top:3px solid var(--accent)">
+          <div class="ct"><span class="dot"></span>行政書士の担当業務</div>
+          <ul class="list">
+            <li><strong>アサイン</strong>：補助者への案件割り振り</li>
+            <li><strong>最終確認</strong>：申請書類の最終チェック・差し戻し</li>
+            <li><strong>申請</strong>：オンラインまたは窓口申請</li>
+            <li><strong>入管対応</strong>：審査中の照会への対応</li>
+            <li><strong>交付対応</strong>：在留カードの受取（郵送 / 窓口）</li>
+            <li><strong>納品</strong>：登録支援機関への在留カード納品</li>
+            <li><strong>判断業務</strong>：法的判断が必要な情報の参照・確認</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top:3px solid var(--accent3)">
+          <div class="ct"><span class="dot" style="background:var(--accent3)"></span>補助者の担当業務</div>
+          <ul class="list">
+            <li><strong>データ整理</strong>：申請人・所属機関書類データの整理</li>
+            <li><strong>RAKUVISAアップ</strong>：PDFデータのアップロード（RAKUVISA案件）</li>
+            <li><strong>Gドライブ保存</strong>：PDFデータの保存（dekisugi案件）</li>
+            <li><strong>書類作成</strong>：RAKUVISA / dekisugiを使った書類作成</li>
+            <li><strong>自己確認</strong>：作成完了後の一次チェック</li>
+            <li><strong>kintone確認</strong>：登録支援機関とのやり取り確認</li>
+          </ul>
+        </div>
+      </div>
+      <div class="alert aw"><span class="ai">⚠️</span><div><strong>補助者は申請行為を行えません。</strong>申請（オンライン入力・窓口持参）は必ず行政書士が担当します。</div></div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div class="page" id="page-categories">
+      <div class="sh"><div class="sl">申請区分・在留資格</div><div class="st">申請区分マトリクス</div></div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>申請区分の種類</div>
+        <div class="tw">
+          <table><thead><tr><th>区分</th><th>正式名称</th><th>社内通称</th><th>概要</th></tr></thead>
+          <tbody>
+            <tr><td><span class="b b-bl">認定</span></td><td>在留資格認定証明書交付申請</td><td><span class="b b-or">新規</span></td><td>海外から呼び寄せる場合</td></tr>
+            <tr><td><span class="b b-pu">変更</span></td><td>在留資格変更許可申請</td><td><span class="b b-or">新規</span></td><td>国内で別の在留資格から変更する場合</td></tr>
+            <tr><td><span class="b b-gr">更新</span></td><td>在留期間更新許可申請</td><td><span class="b b-gr">更新</span></td><td>特定技能からの更新</td></tr>
+          </tbody></table>
+        </div>
+        <div class="alert ainfo" style="margin-bottom:0"><span class="ai">ℹ️</span><div>新規（認定・変更）と更新の比率はおよそ <strong>1対1</strong> です。</div></div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>申請区分 × 在留資格 マトリクス</div>
+        <div class="tw">
+          <table><thead><tr><th>申請区分</th><th>特定技能1号</th><th>特定活動（移行準備）</th><th>特定技能2号</th></tr></thead>
+          <tbody>
+            <tr><td><span class="b b-bl">認定申請</span></td><td class="mok">○ よくある</td><td class="mno">✗ なし</td><td class="mra">△ レア（今後増加）</td></tr>
+            <tr><td><span class="b b-pu">変更申請</span></td><td class="mok">○ よくある</td><td class="mok">○ あり</td><td class="mra">△ レア（今後増加）</td></tr>
+            <tr><td><span class="b b-gr">更新申請</span></td><td class="mok">○ よくある</td><td class="mno">✗ なし</td><td class="mra">△ レア（今後増加）</td></tr>
+          </tbody></table>
+        </div>
+        <div class="alert aw" style="margin-bottom:0"><span class="ai">⚠️</span><div><strong>特定活動（移行準備）は変更申請のみ</strong>です。認定・更新は存在しません。</div></div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>在留資格別・頻度と特徴</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>在留資格</th><th>頻度</th><th>特徴・注意点</th></tr></thead>
+          <tbody>
+            <tr><td>特定技能1号</td><td><span class="b b-bl">★★★ メイン</span></td><td>通算在留5年上限（相当理由ある場合6年）、家族帯同原則不可、支援計画必要</td></tr>
+            <tr><td>特定活動（移行準備）</td><td><span class="b b-or">★★☆ 次点</span></td><td>在留期間6ヶ月・就労可、変更申請のみ、1号への変更申請が前提</td></tr>
+            <tr><td>特定技能2号</td><td><span class="b b-gy">★☆☆ 現状レア</span></td><td>更新回数制限なし、家族帯同可、支援計画不要、今後増加見込み</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOKKATSU -->
+    <div class="page" id="page-tokkatsu">
+      <div class="sh"><div class="sl">申請区分・在留資格</div><div class="st">特定活動（移行準備）</div><div class="sd">特定技能1号への在留資格変更が在留期間満了までに間に合わない場合の移行準備として使う在留資格です。</div></div>
+      <div class="alert aw"><span class="ai">⚠️</span><div><strong>変更申請のみ対応。</strong>認定申請・更新申請は存在しません。</div></div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>主な要件</div>
+        <ul class="list">
+          <li><strong>在留期間満了の7日前まで</strong>に特定技能1号への変更申請ができない合理的な理由があること</li>
+          <li>技能試験・日本語試験に合格していること（<strong>技能実習2号良好修了者は免除</strong>）</li>
+          <li>受入機関が支援計画を作成し適切に支援を行うことが見込まれること</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>提出書類（変更申請）</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>#</th><th>書類名</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>在留資格変更許可申請書</td><td>dekisugiで作成</td></tr>
+            <tr><td>2</td><td>写真</td><td>証明写真（規格あり）</td></tr>
+            <tr><td>3</td><td>パスポート及び在留カード</td><td>提示</td></tr>
+            <tr><td>4</td><td>雇用契約書（様式1-5）・雇用条件書（様式1-6）</td><td></td></tr>
+            <tr><td>5</td><td>試験合格証明書類</td><td><span class="b b-pu">【▲】技能実習2号修了者は免除</span></td></tr>
+            <tr><td>6</td><td>先行手続き書類（登録支援機関関連など）</td><td></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLIENTS -->
+    <div class="page" id="page-clients">
+      <div class="sh"><div class="sl">取引先・ツール</div><div class="st">登録支援機関一覧</div></div>
+      <div class="tw" style="margin-bottom:14px">
+        <table><thead><tr><th>登録支援機関</th><th>案件種別</th><th>使用ツール</th><th>書類作成</th><th>申請</th><th>在留カード対応</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2" style="font-weight:700;vertical-align:middle;background:#fafbff">GHT社</td><td>農業派遣以外（メイン）<br><small style="color:var(--text3)">飲食料品製造・鉄道・自動車運送業・外食業 等</small></td><td><span class="b b-bl">RAKUVISA</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-bl">GB</span></td></tr>
+          <tr><td>農業派遣</td><td><span class="b b-gr">dekisugi</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-bl">GB</span></td></tr>
+          <tr><td rowspan="2" style="font-weight:700;vertical-align:middle;background:#fafbff">地球人社</td><td>農業派遣以外（メイン）</td><td><span class="b b-gr">dekisugi</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-or">地球人社</span></td><td><span class="b b-or">地球人社</span></td></tr>
+          <tr><td>農業派遣</td><td><span class="b b-gr">dekisugi</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-bl">GB</span></td><td><span class="b b-bl">GB</span></td></tr>
+        </tbody></table>
+      </div>
+      <div class="alert ainfo"><span class="ai">ℹ️</span><div>地球人社への<strong>納品はkintoneの該当案件ページへのアップロード</strong>で行います。税金書類等は地球人社が用意するため、GB作成分のみで納品します。</div></div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>派遣形態について（制度上の注意）</div>
+        <div class="alert aw" style="margin-bottom:0"><span class="ai">⚠️</span><div>特定技能で<strong>派遣雇用形態が認められるのは農業・漁業のみ</strong>です。他の分野は必ず直接雇用となります。</div></div>
+      </div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="page" id="page-tools">
+      <div class="sh"><div class="sl">取引先・ツール</div><div class="st">ツール使い分け</div></div>
+      <div class="g2">
+        <div class="tc">
+          <div class="th2"><span style="font-size:18px">🔵</span><div class="tn r">RAKUVISA</div><span class="b b-bl" style="margin-left:auto">GHT社メイン</span></div>
+          <div class="tb">
+            <div class="ti"><span class="ck">✓</span>書類作成（RAKUVISA上）</div>
+            <div class="ti"><span class="ck">✓</span>PDFデータのアップロード・保存</div>
+            <div class="ti"><span class="ck">✓</span>案件管理・情報の保存</div>
+            <div class="ti"><span class="ck">✓</span>RAKUVISA内でほぼ完結</div>
+            <div class="ti"><span class="cx">✗</span>Googleドライブ併用不要</div>
+            <hr style="border-color:var(--border);margin:8px 0">
+            <div style="font-size:12px;color:var(--text3)">命名規則：特になし（どんな名前でもアップ可）</div>
+          </div>
+        </div>
+        <div class="tc">
+          <div class="th2"><span style="font-size:18px">🟢</span><div class="tn d">dekisugi</div><span class="b b-gr" style="margin-left:auto">農業派遣・地球人社</span></div>
+          <div class="tb">
+            <div class="ti"><span class="ck">✓</span>書類作成（入力・PDF出力）</div>
+            <div class="ti"><span class="ck">✓</span>入力情報の保存</div>
+            <div class="ti"><span class="cx">✗</span>PDFデータの保存機能なし</div>
+            <div class="ti"><span class="cx">✗</span>dekisugi内にPDF保管不可</div>
+            <hr style="border-color:var(--border);margin:8px 0">
+            <div style="font-size:12px;color:var(--danger);font-weight:600">→ Googleドライブを必ず併用すること</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>その他ツール</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>ツール</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td>kintone</td><td>登録支援機関とのやり取り・案件データ共有・納品</td></tr>
+            <tr><td>Google Chat</td><td>社内コミュニケーション・アサイン連絡</td></tr>
+            <tr><td>スプレッドシート</td><td>社内での案件管理</td></tr>
+            <tr><td>Googleドライブ</td><td>dekisugi案件のデータ保存・整理</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOLDERS -->
+    <div class="page" id="page-folders">
+      <div class="sh"><div class="sl">ファイル管理</div><div class="st">フォルダ・命名規則</div></div>
+      <div class="alert aw"><span class="ai">⚠️</span><div>このセクションはdekisugi利用時（GHT農業派遣 / 地球人社）のGoogleドライブ管理ルールです。RAKUVISAの場合は命名規則なし。</div></div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>GHT社（農業派遣）のフォルダ構成</div>
+        <div class="ftree">
+          <div class="ftree-root">📁 {連番}_{申請人名}/<span class="ftree-root-ex">例: 1_申請データ（NENG SULASTRI）/</span></div>
+
+          <div class="ftree-sub">📁 作業データ/<span class="ftree-sub-note">受領したPDFをここに保存</span></div>
+          <div class="ftree-file"><span class="ficon">🖼</span><span class="ftree-fn">圧縮_【証明写真】{申請人名}.jpg</span><span class="ftree-fc">証明写真</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">0-1_在留カード_{申請人名}.pdf</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">0-2_パスポート_{申請人名}.pdf</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">0-3_指定書.pdf</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">1-xx_〜.pdf</span><span class="ftree-fc">申請人関係書類</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">2-xx_〜.pdf</span><span class="ftree-fc">所属機関関係書類</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">3（1社目）-xx_〜.pdf</span><span class="ftree-fc">派遣先①書類</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn op">3（2社目）-xx_〜.pdf</span><span class="ftree-fc" style="color:var(--warn)">複数派遣先の場合のみ</span></div>
+
+          <div class="ftree-sub" style="margin-top:2px">📁 kintone保存用/<span class="ftree-sub-badge" style="background:#dbeafe;color:#1d4ed8">申請書ページ含む</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">YYMMDD_申請書類一式（{申請区分}）_{申請人名}.pdf</span></div>
+
+          <div class="ftree-sub" style="margin-top:2px">📁 オンライン申請用/<span class="ftree-sub-badge" style="background:#fef3c7;color:#92400e">申請書ページ除く</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">YYMMDD_申請書類一式（{申請区分}）_{申請人名}.pdf</span></div>
+          <div class="ftree-file"><span class="ficon">🖼</span><span class="ftree-fn">圧縮_【証明写真】{申請人名}.jpg</span></div>
+        </div>
+        <div class="alert ainfo" style="margin-bottom:0"><span class="ai">ℹ️</span><div><strong>kintone保存用</strong>は申請書ページ含む ／ <strong>オンライン申請用</strong>は申請書ページ除く（オンライン申請ではCSVで申請書情報を送信するため）</div></div>
+      </div>
+
+      <div class="card">
+        <div class="ct"><span class="dot"></span>地球人社への納品フォルダ構成</div>
+        <div class="ftree">
+          <div class="ftree-root" style="flex-direction:column;align-items:flex-start;gap:4px">
+            <div>📁 YYMMDD_申請書類一式_{案件番号}_{登録支援機関名}（{申請区分}{人数}名）/</div>
+            <div class="ftree-root-ex" style="margin-left:0">例: 260126_申請書類一式_533_フレッシュおの（更新7名）/</div>
+          </div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">{連番}_申請書類一式（1-5・1-6以外）_{申請人名}.pdf</span></div>
+          <div class="ftree-file"><span class="ficon">📄</span><span class="ftree-fn">{連番}_1-5・1-6_{申請人名}.pdf</span><span class="ftree-fc" style="color:var(--danger);font-weight:600">雇用契約書・雇用条件書（必ず別ファイルで分離）</span></div>
+        </div>
+        <div class="alert atip" style="margin-bottom:0"><span class="ai">💡</span><div>地球人社案件では<strong>1-5（雇用契約書）・1-6（雇用条件書）を別ファイルで分離</strong>して納品します。</div></div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>ファイル名の記号・ルール</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>記号</th><th>意味</th><th>例</th></tr></thead>
+          <tbody>
+            <tr><td><span class="b b-pu">【▲】</span></td><td>条件によっては不要・要判断</td><td>【▲】技能試験合格証、【▲】二国間取決書類</td></tr>
+            <tr><td><span class="b b-or">【省略可能_日付_受付番号】</span></td><td>過去申請で提出済みの場合は省略可</td><td>【省略可能_2026年1月25日_那オンCV26000038】社会保険料関係書類</td></tr>
+            <tr><td><code>1-3_1-5.txt</code>など</td><td>先頭番号は<strong>通し番号</strong>（入管様式番号とは別物）</td><td>1-3_1-5.txt → 通し番号1-3、中身は様式1-5（雇用契約書）</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOCS -->
+    <div class="page" id="page-docs">
+      <div class="sh"><div class="sl">ファイル管理</div><div class="st">書類一覧・様式番号</div><div class="sd">申請区分を選択して必要書類を確認してください。農業派遣案件は「派遣先書類」ボタンで追加表示できます。</div></div>
+
+      <!-- Tab selector -->
+      <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+        <button class="dtab active" onclick="switchDocTab('ninsho')" id="dtab-ninsho">📋 認定申請</button>
+        <button class="dtab" onclick="switchDocTab('henko')" id="dtab-henko">🔄 変更申請</button>
+        <button class="dtab" onclick="switchDocTab('koshin')" id="dtab-koshin">♻️ 更新申請</button>
+      </div>
+
+      <!-- ========== 認定申請 ========== -->
+      <div id="doctab-ninsho" class="doctab">
+        <div class="alert ainfo" style="margin-bottom:16px"><span class="ai">ℹ️</span><div><strong>在留資格認定証明書交付申請</strong>（社内通称：新規）— 海外から呼び寄せる場合。在留カード・指定書は不要。</div></div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>基本書類</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>—</td><td>在留資格認定証明書交付申請書</td><td><span class="b b-bl">必須</span></td><td>dekisugi / RAKUVISAで作成</td></tr>
+            <tr><td>—</td><td>写真（縦4cm×横3cm）</td><td><span class="b b-bl">必須</span></td><td>証明写真規格あり</td></tr>
+            <tr><td>0-2</td><td>パスポート（写し）</td><td><span class="b b-bl">必須</span></td><td>身分事項ページ・写真ページ</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>申請人関係書類（1-xx）</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>1-5</td><td>雇用契約書</td><td><span class="b b-bl">必須</span></td><td>様式1-5</td></tr>
+            <tr><td>1-6</td><td>雇用条件書 / 雇用条件書付帯事項書</td><td><span class="b b-bl">必須</span></td><td>様式1-6 / 1-6別紙</td></tr>
+            <tr><td>1-x</td><td>技能試験合格証</td><td><span class="b b-pu">【▲】条件付</span></td><td>技能実習2号修了者は免除 → 修了証明書を代わりに提出</td></tr>
+            <tr><td>1-x</td><td>日本語試験合格証（N4以上等）</td><td><span class="b b-pu">【▲】条件付</span></td><td>技能実習2号修了者は免除 → 修了証明書を代わりに提出</td></tr>
+            <tr><td>1-x</td><td>技能実習修了証明書</td><td><span class="b b-pu">【▲】条件付</span></td><td>技能実習2号修了者のみ（試験免除時の代替書類）</td></tr>
+            <tr><td>1-x</td><td>二国間取決書類（MOC）</td><td><span class="b b-pu">【▲】条件付</span></td><td>MOC対象17か国の申請人のみ（フィリピン・ベトナム等）</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>所属機関関係書類（2-xx）</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>2-x</td><td>登記事項証明書</td><td><span class="b b-bl">必須</span></td><td>3ヶ月以内に発行されたもの（法人）</td></tr>
+            <tr><td>2-x</td><td>特定技能所属機関概要書</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+            <tr><td>2-x</td><td>支援計画書</td><td><span class="b b-bl">必須</span></td><td>特定技能1号のみ（2号は不要）。登録支援機関が作成</td></tr>
+            <tr><td>2-x</td><td>登録支援機関との委託契約書（写し）</td><td><span class="b b-bl">必須</span></td><td>特定技能1号のみ（2号は不要）</td></tr>
+            <tr><td>2-x</td><td>社会保険料関係書類</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請提出済みの場合は省略可。省略時は過去提出日・受付番号を記載</td></tr>
+          </tbody></table></div>
+        </div>
+        <div style="margin-bottom:16px">
+          <button class="dtoggle" id="btn-dispatch-ninsho" onclick="toggleDispatch('dispatch-ninsho','btn-dispatch-ninsho')">▼ 派遣先関係書類を表示（農業派遣のみ）</button>
+        </div>
+        <div id="dispatch-ninsho" style="display:none">
+          <div class="card" style="border-left:3px solid var(--accent3)">
+            <div class="ct"><span class="dot" style="background:var(--accent3)"></span>派遣先関係書類（3-xx）<span class="b b-gr" style="margin-left:8px">農業派遣のみ</span></div>
+            <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+            <tbody>
+              <tr><td>3-x</td><td>労働者派遣契約書（写し）</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+              <tr><td>3-x</td><td>派遣先概要書（農業分野用）</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+              <tr><td>3-x</td><td>派遣先の登記事項証明書</td><td><span class="b b-pu">【▲】条件付</span></td><td>派遣先が法人の場合のみ</td></tr>
+              <tr><td>3-x</td><td>個人農業者の証明書類</td><td><span class="b b-pu">【▲】条件付</span></td><td>派遣先が個人の場合のみ</td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+        <div class="alert aw"><span class="ai">⚠️</span><div>特定活動（移行準備）の認定申請は<strong>存在しません</strong>（変更申請のみ）。特定技能2号の認定申請は現状レアケースのため、発生時は個別確認してください。</div></div>
+      </div>
+
+      <!-- ========== 変更申請 ========== -->
+      <div id="doctab-henko" class="doctab" style="display:none">
+        <div class="alert ainfo" style="margin-bottom:16px"><span class="ai">ℹ️</span><div><strong>在留資格変更許可申請</strong>（社内通称：新規）— 国内で別の在留資格から変更する場合。在留カード・指定書が必要。</div></div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>基本書類</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>—</td><td>在留資格変更許可申請書</td><td><span class="b b-bl">必須</span></td><td>dekisugi / RAKUVISAで作成</td></tr>
+            <tr><td>—</td><td>写真（縦4cm×横3cm）</td><td><span class="b b-bl">必須</span></td><td>証明写真規格あり</td></tr>
+            <tr><td>0-1</td><td>在留カード（写し）</td><td><span class="b b-bl">必須</span></td><td>表裏両面</td></tr>
+            <tr><td>0-2</td><td>パスポート（写し）</td><td><span class="b b-bl">必須</span></td><td>身分事項ページ・写真ページ</td></tr>
+            <tr><td>0-3</td><td>指定書（写し）</td><td><span class="b b-bl">必須</span></td><td>現在の在留資格の指定書</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>申請人関係書類（1-xx）</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>1-5</td><td>雇用契約書</td><td><span class="b b-bl">必須</span></td><td>様式1-5</td></tr>
+            <tr><td>1-6</td><td>雇用条件書 / 雇用条件書付帯事項書</td><td><span class="b b-bl">必須</span></td><td>様式1-6 / 1-6別紙</td></tr>
+            <tr><td>1-x</td><td>住民税の課税証明書</td><td><span class="b b-bl">必須</span></td><td>市区町村発行（直近年度）</td></tr>
+            <tr><td>1-x</td><td>住民税の納税証明書</td><td><span class="b b-bl">必須</span></td><td>市区町村発行（直近年度）</td></tr>
+            <tr><td>1-x</td><td>技能試験合格証</td><td><span class="b b-pu">【▲】条件付</span></td><td>技能実習2号修了者は免除 → 修了証明書を代わりに提出</td></tr>
+            <tr><td>1-x</td><td>日本語試験合格証（N4以上等）</td><td><span class="b b-pu">【▲】条件付</span></td><td>技能実習2号修了者は免除 → 修了証明書を代わりに提出</td></tr>
+            <tr><td>1-x</td><td>技能実習修了証明書</td><td><span class="b b-pu">【▲】条件付</span></td><td>技能実習2号修了者のみ（試験免除時の代替書類）</td></tr>
+            <tr><td>1-x</td><td>二国間取決書類（MOC）</td><td><span class="b b-pu">【▲】条件付</span></td><td>MOC対象17か国の申請人のみ</td></tr>
+            <tr><td>1-x</td><td>社会保険料関係書類</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請提出済みの場合は省略可。省略時は受付番号を記載</td></tr>
+            <tr><td>1-x</td><td>理由書（特定技能1号への変更申請ができない理由）</td><td><span class="b b-re">特定活動のみ</span></td><td>在留期限までに1号への変更申請ができない合理的理由を説明</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>所属機関関係書類（2-xx）</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>2-x</td><td>登記事項証明書</td><td><span class="b b-bl">必須</span></td><td>3ヶ月以内に発行されたもの（法人）</td></tr>
+            <tr><td>2-x</td><td>特定技能所属機関概要書</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+            <tr><td>2-x</td><td>支援計画書</td><td><span class="b b-bl">必須</span></td><td>特定技能1号・特定活動のみ（2号は不要）。登録支援機関が作成</td></tr>
+            <tr><td>2-x</td><td>登録支援機関との委託契約書（写し）</td><td><span class="b b-bl">必須</span></td><td>特定技能1号・特定活動のみ（2号は不要）</td></tr>
+            <tr><td>2-x</td><td>社会保険料関係書類</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請提出済みの場合は省略可</td></tr>
+          </tbody></table></div>
+        </div>
+        <div style="margin-bottom:16px">
+          <button class="dtoggle" id="btn-dispatch-henko" onclick="toggleDispatch('dispatch-henko','btn-dispatch-henko')">▼ 派遣先関係書類を表示（農業派遣のみ）</button>
+        </div>
+        <div id="dispatch-henko" style="display:none">
+          <div class="card" style="border-left:3px solid var(--accent3)">
+            <div class="ct"><span class="dot" style="background:var(--accent3)"></span>派遣先関係書類（3-xx）<span class="b b-gr" style="margin-left:8px">農業派遣のみ</span></div>
+            <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+            <tbody>
+              <tr><td>3-x</td><td>労働者派遣契約書（写し）</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+              <tr><td>3-x</td><td>派遣先概要書（農業分野用）</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+              <tr><td>3-x</td><td>派遣先の登記事項証明書</td><td><span class="b b-pu">【▲】条件付</span></td><td>派遣先が法人の場合のみ</td></tr>
+              <tr><td>3-x</td><td>個人農業者の証明書類</td><td><span class="b b-pu">【▲】条件付</span></td><td>派遣先が個人の場合のみ</td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+        <div class="alert atip"><span class="ai">💡</span><div><strong>特定活動（移行準備）変更申請</strong>の場合、理由書が追加必要です。詳細は「特定活動（移行準備）」ページも参照してください。</div></div>
+      </div>
+
+      <!-- ========== 更新申請 ========== -->
+      <div id="doctab-koshin" class="doctab" style="display:none">
+        <div class="alert ainfo" style="margin-bottom:16px"><span class="ai">ℹ️</span><div><strong>在留期間更新許可申請</strong>（社内通称：更新）— 特定技能からの更新。前回提出済みの書類は省略できるケースが多い。</div></div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>基本書類</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>—</td><td>在留期間更新許可申請書</td><td><span class="b b-bl">必須</span></td><td>dekisugi / RAKUVISAで作成</td></tr>
+            <tr><td>—</td><td>写真（縦4cm×横3cm）</td><td><span class="b b-bl">必須</span></td><td>証明写真規格あり</td></tr>
+            <tr><td>0-1</td><td>在留カード（写し）</td><td><span class="b b-bl">必須</span></td><td>表裏両面</td></tr>
+            <tr><td>0-2</td><td>パスポート（写し）</td><td><span class="b b-bl">必須</span></td><td>身分事項ページ・写真ページ</td></tr>
+            <tr><td>0-3</td><td>指定書（写し）</td><td><span class="b b-bl">必須</span></td><td>現在の在留資格の指定書</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>申請人関係書類（1-xx）</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>1-5</td><td>雇用契約書</td><td><span class="b b-bl">必須</span></td><td>様式1-5（変更があれば最新版）</td></tr>
+            <tr><td>1-6</td><td>雇用条件書 / 雇用条件書付帯事項書</td><td><span class="b b-bl">必須</span></td><td>様式1-6 / 1-6別紙</td></tr>
+            <tr><td>1-x</td><td>住民税の課税証明書</td><td><span class="b b-bl">必須</span></td><td>直近年度のもの（毎年更新）</td></tr>
+            <tr><td>1-x</td><td>住民税の納税証明書</td><td><span class="b b-bl">必須</span></td><td>直近年度のもの（毎年更新）</td></tr>
+            <tr><td>1-x</td><td>技能試験合格証</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請で提出済みの場合は省略可。受付番号を記載</td></tr>
+            <tr><td>1-x</td><td>日本語試験合格証</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請で提出済みの場合は省略可。受付番号を記載</td></tr>
+            <tr><td>1-x</td><td>技能実習修了証明書</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請で提出済みの場合は省略可</td></tr>
+            <tr><td>1-x</td><td>二国間取決書類（MOC）</td><td><span class="b b-pu">【▲】条件付</span></td><td>MOC対象国かつ前回未提出の場合のみ必要</td></tr>
+            <tr><td>1-x</td><td>社会保険料関係書類</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請提出済みの場合は省略可。省略時は受付番号を記載</td></tr>
+          </tbody></table></div>
+        </div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>所属機関関係書類（2-xx）</div>
+          <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>2-x</td><td>登記事項証明書</td><td><span class="b b-or">【省略可能】</span></td><td>前回から変更がない場合は省略可</td></tr>
+            <tr><td>2-x</td><td>特定技能所属機関概要書</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+            <tr><td>2-x</td><td>支援計画書</td><td><span class="b b-bl">必須</span></td><td>特定技能1号のみ（2号は不要）。登録支援機関が作成</td></tr>
+            <tr><td>2-x</td><td>登録支援機関との委託契約書（写し）</td><td><span class="b b-or">【省略可能】</span></td><td>前回から変更がない場合は省略可</td></tr>
+            <tr><td>2-x</td><td>社会保険料関係書類</td><td><span class="b b-or">【省略可能】</span></td><td>前回申請提出済みの場合は省略可</td></tr>
+          </tbody></table></div>
+        </div>
+        <div style="margin-bottom:16px">
+          <button class="dtoggle" id="btn-dispatch-koshin" onclick="toggleDispatch('dispatch-koshin','btn-dispatch-koshin')">▼ 派遣先関係書類を表示（農業派遣のみ）</button>
+        </div>
+        <div id="dispatch-koshin" style="display:none">
+          <div class="card" style="border-left:3px solid var(--accent3)">
+            <div class="ct"><span class="dot" style="background:var(--accent3)"></span>派遣先関係書類（3-xx）<span class="b b-gr" style="margin-left:8px">農業派遣のみ</span></div>
+            <div class="tw"><table><thead><tr><th>番号</th><th>書類名</th><th>必要性</th><th>備考</th></tr></thead>
+            <tbody>
+              <tr><td>3-x</td><td>労働者派遣契約書（写し）</td><td><span class="b b-bl">必須</span></td><td>変更がある場合は最新版を提出</td></tr>
+              <tr><td>3-x</td><td>派遣先概要書（農業分野用）</td><td><span class="b b-bl">必須</span></td><td></td></tr>
+              <tr><td>3-x</td><td>派遣先の登記事項証明書</td><td><span class="b b-pu">【▲】条件付</span></td><td>派遣先が法人の場合。変更なければ省略可</td></tr>
+              <tr><td>3-x</td><td>個人農業者の証明書類</td><td><span class="b b-pu">【▲】条件付</span></td><td>派遣先が個人の場合のみ</td></tr>
+            </tbody></table></div>
+          </div>
+        </div>
+        <div class="alert aw"><span class="ai">⚠️</span><div>特定活動（移行準備）の更新申請は<strong>存在しません</strong>（変更申請のみ）。特定技能1号の通算在留期間（最長5年、相当理由あれば6年）に注意してください。</div></div>
+      </div>
+
+      <!-- 凡例 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>書類区分の凡例</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text2)"><span class="b b-bl">必須</span>常に必要な書類</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text2)"><span class="b b-pu">【▲】条件付</span>条件によっては不要・要判断</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text2)"><span class="b b-or">【省略可能】</span>前回申請提出済みなら省略可（受付番号記載）</div>
+          <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text2)"><span class="b b-re">特定活動のみ</span>特定活動（移行準備）変更申請のみ必要</div>
+        </div>
+      </div>
+
+      <!-- 様式番号一覧 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>入管様式番号と書類名（全ケース共通）</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>入管様式番号</th><th>書類名</th><th>備考</th></tr></thead>
+          <tbody>
+            <tr><td>1-5</td><td>雇用契約書</td><td>全申請共通</td></tr>
+            <tr><td>1-6 / 1-6別紙</td><td>雇用条件書 / 雇用条件書付帯事項書</td><td>全申請共通</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+
+      <!-- テンプレート整備状況 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>申請区分 × 派遣先タイプ の対応テンプレート（GHT農業派遣）</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>申請区分</th><th>派遣先タイプ</th><th>テンプレート</th></tr></thead>
+          <tbody>
+            <tr><td><span class="b b-bl">認定</span></td><td>派遣先法人</td><td><span class="b b-gr">あり</span></td></tr>
+            <tr><td><span class="b b-bl">認定</span></td><td>派遣先個人</td><td><span class="b b-re">未作成（要整備）</span></td></tr>
+            <tr><td><span class="b b-pu">変更</span></td><td>派遣先法人</td><td><span class="b b-gr">あり</span></td></tr>
+            <tr><td><span class="b b-pu">変更</span></td><td>派遣先個人（労働保険あり）</td><td><span class="b b-gr">あり</span></td></tr>
+            <tr><td><span class="b b-pu">変更</span></td><td>派遣先個人（労働保険なし）</td><td><span class="b b-gr">あり</span></td></tr>
+            <tr><td><span class="b b-gr">更新</span></td><td>派遣先法人</td><td><span class="b b-gr">あり</span></td></tr>
+            <tr><td><span class="b b-gr">更新</span></td><td>派遣先個人（労働保険あり）</td><td><span class="b b-gr">あり</span></td></tr>
+            <tr><td><span class="b b-gr">更新</span></td><td>派遣先個人（労働保険なし）</td><td><span class="b b-gr">あり</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEIDO -->
+    <!-- 最終確認のポイント -->
+    <div class="page" id="page-review">
+      <div class="sh"><div class="sl">品質管理</div><div class="st">行政書士による最終確認のポイント</div><div class="sd">「どの項目を・なぜ確認するか」を決める判断基準と考え方です。補助者が確認依頼を出す際の参考にもなります。</div></div>
+
+      <div class="alert ainfo"><span class="ai">💡</span><div>最終確認はすべての項目を機械的にチェックするのではなく、<strong>「確認コストに見合うリスク低減効果があるか」</strong>で判断します。重点的に確認すべき項目に集中することで、質と効率を両立させます。</div></div>
+
+      <!-- 3つの判断軸 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>確認すべき項目かどうかの判断軸（3つの視点）</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:14px">以下の3軸を総合して「この項目は自分が確認すべきか否か」を判断します。どれか1つが極端に高い場合は、単独でも確認の必要性を示します。</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:6px">
+          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+            <span style="font-size:22px;flex-shrink:0;line-height:1">⚡</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#1e40af;margin-bottom:3px">① 影響の大きさ</div>
+              <div style="font-size:13px;color:var(--text2);line-height:1.65">万が一、誤った内容で提出した場合にどれほどの影響があるか。<br>不許可・再申請・申請人への不利益・入管との関係悪化など、<strong>取り返しのつかないミス</strong>につながる項目は優先的に確認する。</div>
+              <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                <span class="b b-re">影響大 → 必ず確認</span>
+                <span class="b b-or">影響中 → できれば確認</span>
+                <span class="b b-gy">影響小 → 省略可能</span>
+              </div>
+            </div>
+          </div>
+          <div style="background:#fefce8;border:1px solid #fde68a;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+            <span style="font-size:22px;flex-shrink:0;line-height:1">🔄</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:3px">② リカバリーの可否</div>
+              <div style="font-size:13px;color:var(--text2);line-height:1.65">間違いが発覚したとき、どれくらい容易に修正・対処できるか。<br>提出後に訂正不可・不許可通知後の対応が困難な項目は、事前確認の優先度が上がる。</div>
+              <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                <span class="b b-re">修正不可 → 必ず確認</span>
+                <span class="b b-or">修正困難 → できれば確認</span>
+                <span class="b b-gy">修正容易 → 省略可能</span>
+              </div>
+            </div>
+          </div>
+          <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+            <span style="font-size:22px;flex-shrink:0;line-height:1">⚠️</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#065f46;margin-bottom:3px">③ ミスが発生しやすいか</div>
+              <div style="font-size:13px;color:var(--text2);line-height:1.65">入力方法の複雑さ・担当者のスキル・作業の繁雑さなどから、<strong>実際にミスが起きやすい項目かどうか</strong>を判断する。<br>手入力が多い・選択肢が紛らわしい・条件分岐が複雑な箇所は確認の優先度が高い。</div>
+              <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+                <span class="b b-re">ミス率高 → 必ず確認</span>
+                <span class="b b-or">ミス率中 → できれば確認</span>
+                <span class="b b-gy">ミス率低 → 省略可能</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 経験則の加味 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>＋ 経験則による補正</div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:12px">3軸の客観的な判断に加え、自分自身が実際に作成・確認作業を行なってきた経験を加味します。</p>
+        <div class="stepblock">
+          <div class="sbtitle">経験則が活かされる場面</div>
+          <div class="sitem"><span class="snum bl">例1</span><div><div class="smain">「この申請区分では○○の書類で記載ミスが出やすい」という実績</div><div class="ssub">過去に何度かミスが発生した箇所は、3軸の評価より重点的に確認する。</div></div></div>
+          <div class="sitem"><span class="snum bl">例2</span><div><div class="smain">担当補助者ごとの得意・不得意の傾向</div><div class="ssub">担当者の習熟度によって確認の深度を調整する。経験が浅い時期は全体的に確認を厚くする。</div></div></div>
+          <div class="sitem"><span class="snum bl">例3</span><div><div class="smain">特定の取引先・案件パターンで繰り返す典型ミス</div><div class="ssub">同じ取引先や分野で何度も出るエラーパターンは、チェックリストに追加するか重点確認項目に昇格させる。</div></div></div>
+          <div class="sitem"><span class="snum bl">例4</span><div><div class="smain">入管窓口・システムの仕様変更に伴う新たなリスク</div><div class="ssub">制度改正・RAKUVISA/dekisugi のアップデート直後は、従来は問題なかった箇所でもミスが増える。移行期は確認を強化する。</div></div></div>
+        </div>
+      </div>
+
+      <!-- 優先度マトリクス -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>確認優先度の目安（組み合わせによる判断）</div>
+        <div class="tw" style="margin-bottom:0">
+          <table>
+            <thead><tr><th>影響の大きさ</th><th>リカバリー</th><th>ミス率</th><th>確認優先度</th><th>対応方針</th></tr></thead>
+            <tbody>
+              <tr><td><span class="b b-re">大</span></td><td><span class="b b-re">不可〜困難</span></td><td>高〜低</td><td><span class="b b-re">最優先</span></td><td>行政書士が必ず自ら確認</td></tr>
+              <tr><td><span class="b b-re">大</span></td><td><span class="b b-gy">可能</span></td><td>高</td><td><span class="b b-or">高</span></td><td>行政書士が確認。修正フローも整備しておく</td></tr>
+              <tr><td><span class="b b-or">中</span></td><td><span class="b b-re">不可〜困難</span></td><td>高〜中</td><td><span class="b b-or">高</span></td><td>行政書士が確認</td></tr>
+              <tr><td><span class="b b-or">中</span></td><td><span class="b b-gy">可能</span></td><td>中</td><td><span class="b b-gy">中</span></td><td>補助者がダブルチェック後、行政書士は抜き取り確認</td></tr>
+              <tr><td><span class="b b-gy">小</span></td><td><span class="b b-gy">可能</span></td><td>低</td><td><span class="b b-gy">省略可</span></td><td>補助者のチェックで完結。行政書士確認は任意</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 逆に確認しない判断 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>「確認しない」という判断も重要</div>
+        <div class="alert atip" style="margin-bottom:12px"><span class="ai">✅</span><div>確認に使う時間は有限です。影響が小さく・修正が容易で・ミスが起きにくい項目への確認コストは、より重要な箇所へ集中するための「省略判断」として位置づけます。</div></div>
+        <ul class="list">
+          <li><strong>システムが自動入力する項目</strong>（RAKUVISAの自動反映フィールドなど）は、出力後の確認よりソース（パスポート・在留カード）との照合を優先する</li>
+          <li><strong>添付書類の有無チェック</strong>は、補助者が作成した書類チェックリストを信頼し、抜き取り確認で十分</li>
+          <li><strong>書式・フォント・レイアウトなどの見栄え</strong>は、入管の審査対象外のため確認優先度は最低位</li>
+          <li><strong>同一情報が複数箇所に転記される場合</strong>は、元情報（パスポート等）だけを確認し、転記先の全箇所チェックは省略可能</li>
+        </ul>
+      </div>
+
+      <div class="alert aw"><span class="ai">⚠️</span><div>このページに記載した判断基準は固定ルールではありません。新しい経験・ミス事例・制度変更に合わせて随時アップデートしてください。</div></div>
+    </div>
+
+    <div class="page" id="page-seido">
+      <div class="sh"><div class="sl">制度知識</div><div class="st">特定技能制度まとめ</div><div class="sd">出入国在留管理庁資料（令和8年1月22日更新版）をもとに整理した制度の基礎知識です。</div></div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>特定技能1号 vs 2号 比較</div>
+        <div class="tw" style="margin-bottom:0">
+          <table><thead><tr><th>項目</th><th>特定技能1号</th><th>特定技能2号</th></tr></thead>
+          <tbody>
+            <tr><td>在留期間</td><td>通算5年上限（更新あり）※相当理由あれば6年</td><td>更新回数制限なし（3年・2年・1年・6ヶ月）</td></tr>
+            <tr><td>技能水準</td><td>試験等で確認（技能実習2号修了者は免除）</td><td>試験等で確認（熟練した技能）</td></tr>
+            <tr><td>日本語水準</td><td>N4以上等（技能実習2号修了者は免除）</td><td>試験不要（漁業・外食はN3）</td></tr>
+            <tr><td>家族帯同</td><td>基本的に不可</td><td>要件満たせば可（配偶者・子）</td></tr>
+            <tr><td>支援計画</td><td>必要（登録支援機関への委託可）</td><td>不要</td></tr>
+            <tr><td>対象分野</td><td>16分野</td><td>11分野</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>技能実習2号修了者の試験免除（重要）</div>
+        <div class="alert atip" style="margin-bottom:0"><span class="ai">💡</span><div>技能実習2号を<strong>良好に修了</strong>し、かつ技能実習で修得した技能が従事しようとする業務と関連性が認められる場合、特定技能1号の技能試験・日本語試験が<strong>免除</strong>されます。フォルダ内の<code>【▲】技能試験合格証</code>・<code>【▲】日本語試験合格証</code>の代わりに技能実習修了証明書を提出します。</div></div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>二国間取決め（MOC）対象国（17か国）</div>
+        <div id="moc" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+        <div class="alert ainfo" style="margin-bottom:0"><span class="ai">ℹ️</span><div>対象国の場合、フォルダ内の<code>【▲】二国間取決書類</code>が必要です。申請人の国籍を確認して判断してください。</div></div>
+      </div>
+      <div class="card">
+        <div class="ct"><span class="dot"></span>特定技能1号 対象16分野（★ = GBが取り扱う分野）</div>
+        <div id="fields" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px"></div>
+      </div>
+    </div>
+
+    <!-- RAKUVISA -->
+    <div class="page" id="page-rakuvisa">
+      <div class="sh"><div class="sl">操作手順</div><div class="st">RAKUVISA 操作手順</div><div class="sd">補助者向けの書類作成手順です。GHT社・農業派遣以外（飲食料品製造・鉄道・自動車運送業・外食業等）の案件で使用します。</div></div>
+      <div class="alert ainfo"><span class="ai">ℹ️</span><div>RAKUVISAはPDFデータのアップロードから書類作成まで<strong>ほぼ完結</strong>するツールです。Googleドライブの併用は不要です。</div></div>
+
+      <!-- 対象案件 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>このフローを使う条件</div>
+        <div class="tw" style="margin-bottom:0"><table><thead><tr><th>取引先</th><th>案件種別</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:700">GHT社</td><td>農業派遣<strong>以外</strong>（飲食料品製造・鉄道・自動車運送業・外食業 等）</td></tr>
+        </tbody></table></div>
+      </div>
+
+      <!-- 全体フロー -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>補助者作業フロー（全体）</div>
+        <div class="flow">
+          <div class="fi"><div class="fl"><div class="fn as">1</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">kintoneで案件・データを確認</div><div class="fnote">登録支援機関からkintoneに共有されたパスポート・在留カード・証明書PDFを確認する</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn as">2</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">RAKUVISAで該当案件を開く（または新規作成）</div><div class="fnote">申請人が既存の場合は既存案件を開く。新規の場合は案件を新規作成する</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn as">3</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">PDFをRAKUVISAにアップロード</div><div class="fnote">パスポート・在留カード・納税証明書・試験合格証等のPDFをRAKUVISA内の案件にアップロードする</div><div class="fsub"><span class="b b-bl">ファイル命名規則なし（任意の名前でOK）</span></div></div></div>
+          <div class="fi"><div class="fl"><div class="fn as">4</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">RAKUVISA上で申請書類を作成・入力</div><div class="fnote">申請書・支援計画書等の各項目をRAKUVISA上で入力する。入力内容はRAKUVISA内に自動保存される</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn as">5</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">書類一式を自己確認</div><div class="fnote">チェックリストに沿って記載漏れ・誤りがないか確認する</div></div></div>
+          <div class="fi"><div class="fl"><div class="fn gb">6</div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">RAKUVISAで最終確認 → 申請へ</div><div class="fnote">Google Chatで「確認依頼」を行政書士に送る。行政書士がRAKUVISA上で最終チェックを行う</div></div></div>
+        </div>
+      </div>
+
+      <!-- STEP詳細 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>STEP 1｜kintoneで案件・データを確認</div>
+        <div class="stepblock" style="margin-bottom:0">
+          <div class="sitem"><span class="snum bl">1-1</span><div><div class="smain">kintoneにログインし、対象案件を開く</div><div class="ssub">Google Chatで受け取ったアサイン連絡のリンク、またはkintone内の案件一覧から対象案件を開く</div></div></div>
+          <div class="sitem"><span class="snum bl">1-2</span><div><div class="smain">共有されているPDFを確認・ダウンロード</div><div class="ssub">パスポート・在留カード・納税証明書・試験合格証など、登録支援機関が添付したPDFを確認する。不足書類がある場合は登録支援機関に問い合わせる前に行政書士に確認</div></div></div>
+          <div class="sitem"><span class="snum bl">1-3</span><div><div class="smain">申請区分・在留資格を確認する</div><div class="ssub">認定 / 変更 / 更新、特定技能1号 / 特定活動 のどれか。書類一覧・様式番号ページで必要書類を確認しておく</div></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ct"><span class="dot"></span>STEP 2–3｜RAKUVISAで案件を開きPDFをアップロード</div>
+        <div class="stepblock" style="margin-bottom:12px">
+          <div class="sitem"><span class="snum bl">2-1</span><div><div class="smain">RAKUVISAにログイン</div></div></div>
+          <div class="sitem"><span class="snum bl">2-2</span><div><div class="smain">対象の申請人案件を検索して開く（または新規作成）</div><div class="ssub">既存申請人の場合：氏名・在留カード番号等で検索して既存案件を開く<br>新規の場合：「新規案件作成」から申請人情報を入力して案件を作成する</div></div></div>
+          <div class="sitem"><span class="snum bl">3-1</span><div><div class="smain">案件内の書類アップロードエリアにPDFをアップ</div><div class="ssub">パスポート・在留カード・納税証明書・試験合格証等を順番にアップロードする。<strong>ファイル名は任意でOK</strong>（RAKUVISAはファイル命名規則なし）</div></div></div>
+          <div class="sitem"><span class="snum bl">3-2</span><div><div class="smain">アップロード完了を確認</div><div class="ssub">全ての必要PDFがアップロードされているかをチェックする</div></div></div>
+        </div>
+        <div class="alert aw" style="margin-bottom:0"><span class="ai">⚠️</span><div>証明写真はPDFではなくJPG/PNG形式でアップロードする場合があります。サイズ規格（縦4cm×横3cm）を確認してください。</div></div>
+      </div>
+
+      <div class="card">
+        <div class="ct"><span class="dot"></span>STEP 4｜RAKUVISA上で申請書類を作成・入力</div>
+        <div class="stepblock" style="margin-bottom:12px">
+          <div class="sitem"><span class="snum bl">4-1</span><div><div class="smain">申請区分に応じた書類テンプレートを選択</div><div class="ssub">認定 / 変更 / 更新 に対応するテンプレートをRAKUVISA内で選択する</div></div></div>
+          <div class="sitem"><span class="snum bl">4-2</span><div><div class="smain">申請書（申請人情報）を入力</div><div class="ssub">氏名（漢字・ローマ字）・生年月日・国籍・住所・在留カード番号・パスポート番号等をアップロード済みPDFを見ながら入力する</div></div></div>
+          <div class="sitem"><span class="snum bl">4-3</span><div><div class="smain">雇用契約書（様式1-5）・雇用条件書（様式1-6）を入力</div><div class="ssub">所属機関・雇用条件の各項目を入力する。登録支援機関から提供されたデータを参照する</div></div></div>
+          <div class="sitem"><span class="snum bl">4-4</span><div><div class="smain">支援計画書を入力（特定技能1号・特定活動の場合）</div><div class="ssub">支援計画の各項目を入力する。登録支援機関の支援体制に合わせて記載する</div></div></div>
+          <div class="sitem"><span class="snum bl">4-5</span><div><div class="smain">入力内容を保存・PDFプレビューで確認</div><div class="ssub">RAKUVISA内の保存ボタンで保存。PDFプレビュー機能で出力イメージを確認する</div></div></div>
+        </div>
+        <div class="alert atip" style="margin-bottom:0"><span class="ai">💡</span><div>入力内容はRAKUVISA内に自動保存されます。作業途中でも安心して閉じられます。</div></div>
+      </div>
+
+      <div class="card">
+        <div class="ct"><span class="dot"></span>STEP 5｜書類一式の自己確認チェックリスト</div>
+        <div class="stepblock" style="margin-bottom:0">
+          <div class="sitem"><span class="snum bl">✓</span><div><div class="smain">必要書類が全てアップロード・作成されているか</div><div class="ssub">書類一覧ページの対象申請区分を確認してチェック</div></div></div>
+          <div class="sitem"><span class="snum bl">✓</span><div><div class="smain">申請人の氏名・生年月日・国籍に誤りがないか</div><div class="ssub">パスポート原本と照合する</div></div></div>
+          <div class="sitem"><span class="snum bl">✓</span><div><div class="smain">在留カード番号・有効期限が正しいか</div><div class="ssub">在留カード画像と照合する</div></div></div>
+          <div class="sitem"><span class="snum bl">✓</span><div><div class="smain">【▲】条件付き書類の要否を判断したか</div><div class="ssub">技能試験免除・MOC対象国かどうか確認済みか</div></div></div>
+          <div class="sitem"><span class="snum bl">✓</span><div><div class="smain">雇用契約の開始日・給与・勤務地に誤りがないか</div></div></div>
+          <div class="sitem"><span class="snum bl">✓</span><div><div class="smain">確認完了後、Google Chatで行政書士に「確認依頼」を送る</div><div class="ssub">案件名・申請区分・RAKUVISA案件URLを添えて連絡する</div></div></div>
+        </div>
+      </div>
+
+      <div class="alert aw"><span class="ai">⚠️</span><div>申請（オンライン入力・書類提出）は<strong>必ず行政書士が行います</strong>。補助者は書類作成・確認依頼までが担当範囲です。</div></div>
+    </div>
+
+    <!-- DEKISUGI -->
+    <div class="page" id="page-dekisugi">
+      <div class="sh"><div class="sl">操作手順</div><div class="st">dekisugi 操作手順</div><div class="sd">補助者向けの書類作成手順です。GHT社・農業派遣 および 地球人社のすべての案件で使用します。Googleドライブとの併用が必須です。</div></div>
+      <div class="alert aw"><span class="ai">⚠️</span><div>dekisugiはPDFデータの保存機能がありません。<strong>必ずGoogleドライブを併用</strong>してください。フォルダ命名規則はフォルダ・命名規則ページを参照してください。</div></div>
+
+      <!-- 対象案件 -->
+      <div class="card">
+        <div class="ct"><span class="dot"></span>このフローを使う条件</div>
+        <div class="tw" style="margin-bottom:0"><table><thead><tr><th>取引先</th><th>案件種別</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:700">GHT社</td><td>農業派遣（直接雇用ではなく<strong>派遣形態</strong>の案件）</td></tr>
+          <tr><td style="font-weight:700">地球人社</td><td>農業派遣・農業派遣以外 <strong>すべて</strong></td></tr>
+        </tbody></table></div>
+      </div>
+
+      <!-- タブ：GHT農業派遣 / 地球人社 -->
+      <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+        <button class="dtab active" onclick="switchDekiTab('ght')" id="dktab-ght">🌾 GHT社・農業派遣</button>
+        <button class="dtab" onclick="switchDekiTab('chikyu')" id="dktab-chikyu">🌏 地球人社</button>
+      </div>
+
+      <!-- GHT農業派遣 -->
+      <div id="dekitab-ght" class="dekitab">
+        <div class="card">
+          <div class="ct"><span class="dot"></span>補助者作業フロー（GHT社・農業派遣）</div>
+          <div class="flow">
+            <div class="fi"><div class="fl"><div class="fn as">1</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">kintoneでデータを受領・確認</div><div class="fnote">登録支援機関からkintoneにPDFが共有される。申請区分・派遣先情報を確認する</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">2</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">Googleドライブに申請人フォルダを作成し、PDFを保存</div><div class="fnote">命名規則に従いフォルダを作成。作業データ/ に番号付きでPDFを保存する</div><div class="fsub"><span class="b b-gr">フォルダ命名規則あり → 命名規則ページ参照</span></div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">3</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">dekisugiで書類を作成・入力</div><div class="fnote">GHT農業派遣用のテンプレートを選択し、各項目を入力する</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">4</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">dekisugiからPDFを出力 → Googleドライブに保存</div><div class="fnote">「kintone保存用/」（申請書ページ含む）と「オンライン申請用/」（申請書ページ除く）に分けて保存する</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">5</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">書類一式を自己確認</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn gb">6</div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">Google Chatで確認依頼 → 最終確認・申請へ</div></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct"><span class="dot"></span>STEP 2｜Googleドライブへのフォルダ作成・PDF保存（GHT農業派遣）</div>
+          <div class="stepblock" style="margin-bottom:12px">
+            <div class="sitem"><span class="snum gr">2-1</span><div><div class="smain">GHT農業派遣の親フォルダを開く</div><div class="ssub">Googleドライブ内のGHT農業派遣用フォルダに移動する</div></div></div>
+            <div class="sitem"><span class="snum gr">2-2</span><div><div class="smain">申請人フォルダを作成する</div><div class="ssub">命名規則：<code>{連番}_{申請人名}/</code>　例: <code>1_申請データ（NENG SULASTRI）/</code></div></div></div>
+            <div class="sitem"><span class="snum gr">2-3</span><div><div class="smain">サブフォルダ3つを作成する</div><div class="ssub"><code>作業データ/</code>　<code>kintone保存用/</code>　<code>オンライン申請用/</code>　の3つを作成</div></div></div>
+            <div class="sitem"><span class="snum gr">2-4</span><div><div class="smain">作業データ/ にPDFを命名規則に従って保存</div><div class="ssub">0-1_在留カード・0-2_パスポート・0-3_指定書・1-xx_申請人関係・2-xx_所属機関・3-xx_派遣先 の順で整理<br>証明写真は <code>圧縮_【証明写真】{申請人名}.jpg</code> で保存</div></div></div>
+          </div>
+          <div class="alert ainfo" style="margin-bottom:0"><span class="ai">ℹ️</span><div>フォルダ構成の詳細は<strong>フォルダ・命名規則</strong>ページを参照してください。</div></div>
+        </div>
+
+        <div class="card">
+          <div class="ct"><span class="dot"></span>STEP 3–4｜dekisugiで書類作成・PDF出力</div>
+          <div class="stepblock" style="margin-bottom:12px">
+            <div class="sitem"><span class="snum gr">3-1</span><div><div class="smain">dekisugiにログインし、対象案件を開く（または新規作成）</div></div></div>
+            <div class="sitem"><span class="snum gr">3-2</span><div><div class="smain">申請区分・派遣先タイプに合ったテンプレートを選択</div><div class="ssub">派遣先が法人か個人か（労働保険あり/なし）を確認してテンプレートを選ぶ → 書類一覧ページのテンプレート整備状況も参照</div></div></div>
+            <div class="sitem"><span class="snum gr">3-3</span><div><div class="smain">各項目を入力する</div><div class="ssub">Googleドライブに保存したPDFを参照しながら、申請人情報・所属機関情報・派遣先情報を入力する</div></div></div>
+            <div class="sitem"><span class="snum gr">4-1</span><div><div class="smain">dekisugiからPDFを出力する</div></div></div>
+            <div class="sitem"><span class="snum gr">4-2</span><div><div class="smain">kintone保存用/ に保存（申請書ページ含む）</div><div class="ssub">命名規則：<code>YYMMDD_申請書類一式（{申請区分}）_{申請人名}.pdf</code></div></div></div>
+            <div class="sitem"><span class="snum gr">4-3</span><div><div class="smain">オンライン申請用/ に保存（申請書ページ除く）＋ 証明写真も保存</div><div class="ssub">オンライン申請ではCSVで申請書情報を送信するため、申請書ページは除いて保存する</div></div></div>
+          </div>
+          <div class="alert aw" style="margin-bottom:0"><span class="ai">⚠️</span><div><strong>kintone保存用は申請書ページを含む / オンライン申請用は申請書ページを除く</strong>。この違いを必ず守ること。</div></div>
+        </div>
+      </div>
+
+      <!-- 地球人社 -->
+      <div id="dekitab-chikyu" class="dekitab" style="display:none">
+        <div class="alert ainfo" style="margin-bottom:16px"><span class="ai">ℹ️</span><div>地球人社案件はGBが<strong>書類作成のみ</strong>担当します（農業派遣を除く）。申請・在留カード交付は地球人社が行います。</div></div>
+        <div class="card">
+          <div class="ct"><span class="dot"></span>補助者作業フロー（地球人社）</div>
+          <div class="flow">
+            <div class="fi"><div class="fl"><div class="fn as">1</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">kintoneでデータを受領・確認</div><div class="fnote">登録支援機関からkintoneにPDFが共有される。申請区分を確認する</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">2</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">Googleドライブに申請人フォルダを作成し、PDFを保存</div><div class="fnote">GHT農業派遣と同様の構成でフォルダを作成し、作業データ/ にPDFを保存する</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">3</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">dekisugiで書類を作成・入力</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">4</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">dekisugiからPDFを出力 → 納品フォルダに整理</div><div class="fnote">地球人社向け納品フォルダ構成に従って書類を整理する</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn as">5</div><div class="fline"></div></div><div class="fb"><div class="fr as">補助者</div><div class="ftask">書類一式を自己確認</div></div></div>
+            <div class="fi"><div class="fl"><div class="fn gb">6</div></div><div class="fb"><div class="fr gb">行政書士</div><div class="ftask">最終確認 → kintoneにアップロードして地球人社へ納品</div><div class="fnote">確認OKの場合、行政書士がkintoneの案件ページに書類をアップロードする</div></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ct"><span class="dot"></span>地球人社への納品フォルダ整理（STEP 4）</div>
+          <div class="stepblock" style="margin-bottom:12px">
+            <div class="sitem"><span class="snum gr">4-1</span><div><div class="smain">dekisugiからPDFを出力する</div></div></div>
+            <div class="sitem"><span class="snum gr">4-2</span><div><div class="smain">納品フォルダを作成する</div><div class="ssub">命名規則：<code>YYMMDD_申請書類一式_{案件番号}_{登録支援機関名}（{申請区分}{人数}名）/</code><br>例：<code>260126_申請書類一式_533_フレッシュおの（更新7名）/</code></div></div></div>
+            <div class="sitem"><span class="snum gr">4-3</span><div><div class="smain">申請書類一式（1-5・1-6以外）のPDFをフォルダに保存</div><div class="ssub">命名規則：<code>{連番}_申請書類一式（1-5・1-6以外）_{申請人名}.pdf</code></div></div></div>
+            <div class="sitem"><span class="snum gr">4-4</span><div><div class="smain">1-5・1-6 を別ファイルで保存</div><div class="ssub">命名規則：<code>{連番}_1-5・1-6_{申請人名}.pdf</code><br>地球人社の要望で雇用契約書・雇用条件書は<strong>必ず別ファイルで分離</strong>して納品すること</div></div></div>
+          </div>
+          <div class="alert atip" style="margin-bottom:0"><span class="ai">💡</span><div>税金書類等は地球人社が用意するため、GB作成分のみで納品します。kintoneへのアップロードは行政書士が行います。</div></div>
+        </div>
+
+        <div class="card">
+          <div class="ct"><span class="dot"></span>自己確認チェックリスト（地球人社）</div>
+          <div class="stepblock" style="margin-bottom:0">
+            <div class="sitem"><span class="snum gr">✓</span><div><div class="smain">必要書類が全て作成されているか</div></div></div>
+            <div class="sitem"><span class="snum gr">✓</span><div><div class="smain">1-5・1-6 が別ファイルで分離されているか</div></div></div>
+            <div class="sitem"><span class="snum gr">✓</span><div><div class="smain">納品フォルダの命名規則が正しいか（日付・案件番号・登録支援機関名・人数）</div></div></div>
+            <div class="sitem"><span class="snum gr">✓</span><div><div class="smain">申請人の氏名・生年月日・国籍に誤りがないか（パスポート照合）</div></div></div>
+            <div class="sitem"><span class="snum gr">✓</span><div><div class="smain">確認完了後、Google Chatで行政書士に「確認依頼」を送る</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert aw"><span class="ai">⚠️</span><div>申請（オンライン入力・書類提出）は<strong>必ず行政書士が行います</strong>。補助者は書類作成・確認依頼までが担当範囲です。</div></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const pn={overview:'概要・制度説明',flow:'全体フロー',roles:'役割分担',categories:'申請区分マトリクス',tokkatsu:'特定活動（移行準備）',clients:'登録支援機関一覧',tools:'ツール使い分け',rakuvisa:'RAKUVISA操作手順',dekisugi:'dekisugi操作手順',folders:'フォルダ・命名規則',docs:'書類一覧・様式番号',review:'最終確認のポイント',seido:'特定技能制度まとめ'};
+function switchDekiTab(id){
+  document.querySelectorAll('.dekitab').forEach(t=>t.style.display='none');
+  document.querySelectorAll('[id^="dktab-"]').forEach(b=>b.classList.remove('active'));
+  const t=document.getElementById('dekitab-'+id);if(t)t.style.display='block';
+  const b=document.getElementById('dktab-'+id);if(b)b.classList.add('active');
+}
+function switchDocTab(id){
+  document.querySelectorAll('.doctab').forEach(t=>t.style.display='none');
+  document.querySelectorAll('[id^="dtab-"]').forEach(b=>b.classList.remove('active'));
+  const t=document.getElementById('doctab-'+id);if(t)t.style.display='block';
+  const b=document.getElementById('dtab-'+id);if(b)b.classList.add('active');
+}
+function toggleDispatch(sectionId,btnId){
+  const el=document.getElementById(sectionId);
+  const btn=document.getElementById(btnId);
+  if(!el||!btn)return;
+  if(el.style.display==='none'){
+    el.style.display='block';
+    btn.textContent='▲ 派遣先関係書類を隠す';
+    btn.classList.add('open');
+  }else{
+    el.style.display='none';
+    btn.textContent='▼ 派遣先関係書類を表示（農業派遣のみ）';
+    btn.classList.remove('open');
+  }
+}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const t=document.getElementById('page-'+id);
+  if(t)t.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{if((n.getAttribute('onclick')||'').includes("'"+id+"'"))n.classList.add('active')});
+  document.getElementById('bc').textContent=pn[id]||id;
+  window.scrollTo(0,0);
+  if(history.replaceState) history.replaceState(null,null,'#'+id);
+}
+// ページ読み込み時にハッシュからページを復元
+(function(){
+  const hash=(location.hash||'').replace('#','');
+  if(hash && document.getElementById('page-'+hash)) showPage(hash);
+})();
+const moc=['フィリピン','カンボジア','ネパール','ミャンマー','モンゴル','スリランカ','インドネシア','ベトナム','バングラデシュ','ウズベキスタン','パキスタン','タイ','インド','マレーシア','ラオス','キルギス','タジキスタン'];
+document.getElementById('moc').innerHTML=moc.map(c=>`<span class="b b-gy">${c}</span>`).join('');
+const gb=['農業','飲食料品製造業','外食業','鉄道','自動車運送業'];
+const all=['農業','飲食料品製造業','外食業','鉄道','自動車運送業','介護','ビルクリーニング','工業製品製造業','建設','造船・舶用工業','自動車整備','航空','宿泊','漁業','林業','木材産業'];
+document.getElementById('fields').innerHTML=all.map(f=>gb.includes(f)?`<span class="b b-bl">★ ${f}</span>`:`<span class="b b-gy">${f}</span>`).join('');
+</script>
+</body>
+</html>
